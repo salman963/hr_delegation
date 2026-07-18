@@ -1,0 +1,75 @@
+<odoo>
+
+
+    <record id="mail_template_delegation_activated" model="mail.template">
+            <field name="name">Delegation Activated</field>
+            <field name="email_from">{{ object.env.company.email or user.email or '' }}</field>
+            <field name="email_to">{{ object.delegatee_id.work_email }}</field>
+            <field name="subject">Delegation Activated - {{ object.delegator_id.name }}</field>
+            <field name="model_id" ref="model_hr_delegation"/>
+            <field name="body_html" type="html">
+                   <div style="margin:0;padding:0;">
+                    <p>
+                        Dear <t t-out="object.delegatee_id.name"/>,
+                        <br/><br/>
+
+                        This is to inform you that you have been assigned as a delegate for
+                        <strong><t t-out="object.delegator_id.name"/></strong>.
+                        <br/><br/>
+
+                        The delegation is now active and you may perform the delegated actions
+                        according to the permissions assigned to you.
+                        <br/><br/>
+
+                        <strong>Delegation Details</strong>
+                        <br/>
+                        Delegator:
+                        <t t-out="object.delegator_id.name"/>
+                        <br/>
+
+                        Effective From:
+                        <t t-out="object.date_from"/>
+                        <br/>
+
+                        Effective Until:
+                        <t t-out="object.date_to"/>
+                        <br/><br/>
+
+                        Regards,
+                        <br/>
+                        <t t-out="object.env.company.name"/>
+                    </p>
+                </div>
+            </field>
+    </record>
+
+
+    <record id="mail_template_delegation_deactivated" model="mail.template">
+           <field name="name">Delegation Deactivated</field>
+            <field name="model_id" ref="model_hr_delegation"/>
+            <field name="email_from">{{ object.env.company.email or user.email or '' }}</field>
+            <field name="email_to">{{ object.delegatee_id.work_email }}</field>
+            <field name="subject">Delegation Deactivated - {{ object.delegator_id.name }}</field>
+            <field name="body_html" type="html">
+                   <div style="margin:0;padding:0;">
+                    <p>
+                        Dear <t t-out="object.delegatee_id.name"/>,
+                        <br/><br/>
+
+                        This is to inform you that your delegation access for
+                        <strong><t t-out="object.delegator_id.name"/></strong>
+                        has been deactivated.
+                        <br/><br/>
+
+                        You can no longer perform actions on behalf of this user.
+                        <br/><br/>
+
+                        Regards,
+                        <br/>
+                        <t t-out="object.env.company.name"/>
+                    </p>
+                </div>
+            </field>
+    </record>
+
+</odoo>

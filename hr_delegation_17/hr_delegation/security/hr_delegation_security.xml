@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+
+    <!-- Managers see only their own delegations (as delegator or delegatee) -->
+    <record id="rule_delegation_own" model="ir.rule">
+        <field name="name">Delegation: own records only</field>
+        <field name="model_id" ref="hr_delegation.model_hr_delegation"/>
+        <field name="global" eval="False"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="domain_force">
+            ['|',
+            ('delegator_user_id', '=', user.id),
+            ('delegatee_user_id', '=', user.id)
+            ]
+        </field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- HR Officers / Admins see and manage all delegations -->
+    <record id="rule_delegation_hr_admin" model="ir.rule">
+        <field name="name">Delegation: HR officer full access</field>
+        <field name="model_id" ref="hr_delegation.model_hr_delegation"/>
+        <field name="global" eval="False"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>
