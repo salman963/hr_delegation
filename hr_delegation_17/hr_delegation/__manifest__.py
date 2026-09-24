@@ -23,6 +23,7 @@
 {
     'name': 'HR Manager Delegation',
     'version': '17.0.0.0',
+    'author': 'Salman Malik',
     'category': 'Human Resources',
     'summary': 'Delegate manager responsibilities during leave periods',
     'description': """
@@ -31,7 +32,7 @@
         are handled via the delegatee_parent_id field on hr.employee — no
         changes to the core parent_id / coach_id hierarchy.
     """,
-    'author': 'Salman Malik',
+    
     'depends': ['hr','hr_holidays','insys_user_access'],
     'data': [
         'security/ir.model.access.csv',
