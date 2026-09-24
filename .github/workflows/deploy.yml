@@ -1,0 +1,23 @@
+name: Local Odoo Deployment
+
+on:
+  push:
+    branches:
+      - 17.0
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Update source code
+        uses: actions/checkout@v4
+
+      - name: Show current directory
+        run: pwd
+
+      - name: Show Git commit
+        run: git log -1 --oneline
+
+      - name: Restart Odoo
+        run: sudo systemctl restart odoo12
