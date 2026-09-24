@@ -23,7 +23,7 @@
 {
     'name': 'HR Manager Delegation',
     'version': '17.0.0.0',
-    'maintainer': 'Salman Malik',
+    'author': 'Salman Malik',
     'category': 'Human Resources',
     'summary': 'Delegate manager responsibilities during leave periods',
     'description': """
